@@ -1,0 +1,13 @@
+{
+	"required": true,
+	"minVersion": "0.8",
+	"package": "net.maxxlive.secondarykeys.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"ControlsScreenMixin",
+		"KeyMappingMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

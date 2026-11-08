@@ -1,0 +1,26 @@
+{
+	"schemaVersion": 1,
+	"id": "secondarykeys",
+	"version": "${version}",
+	"name": "MX Secondary Keys",
+	"description": "Adds a second, independent key binding to every action (vanilla and modded) without touching the primary one. Configure it via Options > Controls > Secondary Keybinds or by pressing K.",
+	"authors": [
+		"maxxlive"
+	],
+	"license": "MIT",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"net.maxxlive.secondarykeys.SecondaryKeys"
+		]
+	},
+	"mixins": [
+		"secondarykeys.mixins.json"
+	],
+	"accessWidener": "secondarykeys.classtweaker",
+	"depends": {
+		"fabricloader": ">=0.19.0",
+		"fabric-api": "*",
+		"minecraft": ">=26.3"
+	}
+}
