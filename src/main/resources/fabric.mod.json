@@ -3,7 +3,7 @@
 	"id": "mxsecondarykeys",
 	"version": "${version}",
 	"name": "MX Secondary Keys",
-	"description": "Adds a second, independent key binding to every action (vanilla and modded) without touching the primary one. Configure it via Options > Controls > Secondary Keybinds or by pressing K.",
+	"description": "Adds a second, independent key binding to every action (vanilla and modded) without touching the primary one. Configure it via Options > Controls > Secondary Keybinds.",
 	"authors": [
 		"maxxlive"
 	],

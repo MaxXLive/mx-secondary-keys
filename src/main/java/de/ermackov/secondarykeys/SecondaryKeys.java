@@ -26,7 +26,7 @@ public class SecondaryKeys implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		openScreenKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.mxsecondarykeys.open", InputConstants.KEY_K, KEY_CATEGORY));
+		openScreenKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.mxsecondarykeys.open", InputConstants.UNKNOWN.getValue(), KEY_CATEGORY));
 
 		// All key mappings (including other mods') exist once the client has started.
 		ClientLifecycleEvents.CLIENT_STARTED.register(client -> SecondaryKeyStore.load());

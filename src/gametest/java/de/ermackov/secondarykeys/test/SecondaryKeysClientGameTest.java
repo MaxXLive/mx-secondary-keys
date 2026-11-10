@@ -91,8 +91,17 @@ public class SecondaryKeysClientGameTest implements FabricClientGameTest {
 				throw new AssertionError("Secondary key of jump was not loaded back from " + file.getFileName());
 			}
 
-			// K opens the editor in game.
-			input.pressKey(InputConstants.Type.KEYBOARD.getOrCreate(InputConstants.KEY_K));
+			// The open-editor key is unbound by default; once bound, it opens the editor in game.
+			InputConstants.Key keyK = InputConstants.Type.KEYBOARD.getOrCreate(InputConstants.KEY_K);
+			context.runOnClient(mc -> {
+				KeyMapping openKey = findMapping(mc.options.keyMappings, "key.mxsecondarykeys.open");
+				if (!openKey.getDefaultKey().equals(InputConstants.UNKNOWN) || !openKey.isUnbound()) {
+					throw new AssertionError("The open-editor key should be unbound by default, got " + openKey.getDefaultKey().getName());
+				}
+				openKey.setKey(keyK);
+				KeyMapping.resetMapping();
+			});
+			input.pressKey(keyK);
 			context.waitForScreen(SecondaryKeyBindsScreen.class);
 			context.takeScreenshot("secondary_keys_editor");
 			context.setScreen(() -> null);
@@ -147,6 +156,15 @@ public class SecondaryKeysClientGameTest implements FabricClientGameTest {
 			SecondaryKeys.setSecondary(mc.options.keyJump, key);
 			KeyMapping.resetMapping();
 		});
+	}
+
+	private static KeyMapping findMapping(KeyMapping[] mappings, String name) {
+		for (KeyMapping mapping : mappings) {
+			if (mapping.getName().equals(name)) {
+				return mapping;
+			}
+		}
+		throw new AssertionError("Key mapping " + name + " not found");
 	}
 
 	private static void assertJumpDown(ClientGameTestContext context, boolean expected, String situation) {

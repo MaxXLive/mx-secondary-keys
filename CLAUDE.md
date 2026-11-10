@@ -25,7 +25,7 @@ It adds a second key to every `KeyMapping`. The user writes in German; answer in
 - `mixin/ControlsScreenMixin`: adds the "Secondary Keybinds..." button below the Mouse Settings / Key Binds row.
 - `screen/SecondaryKeyBindsScreen` + `SecondaryKeyBindsList`: the combined editor (name | primary | secondary | reset). They are modelled on vanilla `KeyBindsScreen` / `KeyBindsList`.
 - `SecondaryKeyStore`: reads and writes `config/mxsecondarykeys.txt`. It is loaded on `CLIENT_STARTED`, once every mod's key mappings exist, and saved when the screen closes.
-- `SecondaryKeys`: entrypoint (open-screen key K) and static helpers.
+- `SecondaryKeys`: entrypoint (open-screen key, unassigned by default) and static helpers.
 
 ## Rules
 

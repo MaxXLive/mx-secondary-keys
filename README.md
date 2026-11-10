@@ -27,7 +27,7 @@ The second key does not replace the primary one. Both keys trigger the action, a
 
 ## Usage
 
-- **Options → Controls → Secondary Keybinds...**, or press **K** in game. You can rebind K under *Key Binds → Secondary Keys*.
+- **Options → Controls → Secondary Keybinds...** You can also assign a key that opens the editor in game under *Key Binds → Secondary Keys* (unassigned by default).
 - Click the button in the *Primary* or *Secondary* column, then press a key or mouse button.
 - Press **Esc** while assigning to remove a binding.
 - **Reset** sets the primary key back to its default and clears the secondary key. **Reset Keys** does this for every action.
@@ -57,7 +57,7 @@ Requires JDK 25.
 ./gradlew runClientGameTest
 ```
 
-starts a game client and creates a world. It binds keyboard keys and a mouse button as secondary keys for jump, presses and releases them in every order, saves and loads the config file and opens the editor with K and from the controls screen. Screenshots end up in `build/run/clientGameTest/screenshots/`.
+starts a game client and creates a world. It binds keyboard keys and a mouse button as secondary keys for jump, presses and releases them in every order, saves and loads the config file, checks that the open-editor key is unassigned by default and opens the editor with it once bound and from the controls screen. Screenshots end up in `build/run/clientGameTest/screenshots/`.
 
 ## Releases
 
