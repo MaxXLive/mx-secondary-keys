@@ -30,6 +30,8 @@ public class SecondaryKeysClientGameTest implements FabricClientGameTest {
 
 	@Override
 	public void runTest(ClientGameTestContext context) {
+		// 16:9 and large enough that the screenshots can also go on the mod page
+		context.getInput().resizeWindow(1280, 720);
 		TestInput input = context.getInput();
 
 		try (TestSingleplayerContext singleplayer = context.worldBuilder().create()) {
@@ -103,7 +105,7 @@ public class SecondaryKeysClientGameTest implements FabricClientGameTest {
 			});
 			input.pressKey(keyK);
 			context.waitForScreen(SecondaryKeyBindsScreen.class);
-			context.takeScreenshot("secondary_keys_editor");
+			screenshot(context, "secondary_keys_editor");
 			context.setScreen(() -> null);
 			context.waitTick();
 		}
@@ -111,7 +113,7 @@ public class SecondaryKeysClientGameTest implements FabricClientGameTest {
 		// The controls screen has a button that opens the editor.
 		context.setScreen(() -> new ControlsScreen(null, context.computeOnClient(mc -> mc.options)));
 		context.waitForScreen(ControlsScreen.class);
-		context.takeScreenshot("secondary_keys_controls_button");
+		screenshot(context, "secondary_keys_controls_button");
 		clickButtonInList(context, I18n.get("mxsecondarykeys.button.open"));
 		context.waitForScreen(SecondaryKeyBindsScreen.class);
 		context.setScreen(() -> null);
@@ -180,5 +182,14 @@ public class SecondaryKeysClientGameTest implements FabricClientGameTest {
 		} catch (Exception e) {
 			throw new AssertionError("Could not read " + file, e);
 		}
+	}
+
+	/** Takes a screenshot without toasts and chat lines, which change from run to run and clutter the picture. */
+	private static void screenshot(ClientGameTestContext context, String name) {
+		context.runOnClient(mc -> {
+			mc.gui.toastManager().clear();
+			mc.gui.hud.getChat().clearMessages(false);
+		});
+		context.takeScreenshot(name);
 	}
 }
