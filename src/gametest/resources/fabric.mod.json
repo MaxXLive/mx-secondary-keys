@@ -1,0 +1,15 @@
+{
+	"schemaVersion": 1,
+	"id": "mxsecondarykeys-test",
+	"version": "1.0.0",
+	"name": "MX Secondary Keys Tests",
+	"environment": "client",
+	"entrypoints": {
+		"fabric-client-gametest": [
+			"de.ermackov.secondarykeys.test.SecondaryKeysClientGameTest"
+		]
+	},
+	"depends": {
+		"mxsecondarykeys": "*"
+	}
+}

@@ -42,6 +42,14 @@ Install the mod on the client only. Servers don't need it.
 
 Requires JDK 25.
 
+## Tests
+
+```sh
+./gradlew runClientGameTest
+```
+
+starts a game client and creates a world. It binds keyboard keys and a mouse button as secondary keys for jump, presses and releases them in every order, saves and loads the config file and opens the editor with K and from the controls screen. Screenshots end up in `build/run/clientGameTest/screenshots/`.
+
 ## Releases
 
 Every push to `main` with relevant changes builds the mod and publishes a GitHub release named `v<mc>-patch-<n>`, e.g. `v26.3-patch-1`. The changelog is generated from [Conventional Commit](https://www.conventionalcommits.org/) messages: `feat:` goes under Features, `fix:` and `perf:` under Fixes. `docs:`, `ci:`, `test:` and `style:` commits are left out and do not trigger a release on their own.

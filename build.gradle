@@ -16,6 +16,16 @@ dependencies {
     implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 }
 
+fabricApi {
+    configureTests {
+        createSourceSet = true
+        modId = "mxsecondarykeys-test"
+        enableGameTests = false
+        enableClientGameTests = true
+        eula = true
+    }
+}
+
 loom {
     accessWidenerPath = file("src/main/resources/${project.mod_id}.classtweaker")
 }

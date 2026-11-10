@@ -7,6 +7,7 @@ It adds a second key to every `KeyMapping`. The user writes in German; answer in
 
 - Build: `./gradlew build` → `build/libs/MXSecondaryKeys-26.3-dev.jar` (CI passes `-PreleaseVersion=26.3-patch-N`).
 - Test client: `./gradlew runClient` (run dir `run/`, secondary keys in `run/config/mxsecondarykeys.txt`).
+- Game tests: `./gradlew runClientGameTest` (source set `src/gametest`). Run them after every change.
 - The user's CurseForge instance: `C:\Users\max\curseforge\minecraft\Instances\26.3 Fabric\mods`. Copy the jar there only
   when asked, and remove the old MXSecondaryKeys jar first.
 - No sources jar for Minecraft is available. To read vanilla code, decompile classes from
