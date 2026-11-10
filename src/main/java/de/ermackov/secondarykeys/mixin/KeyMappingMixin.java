@@ -1,11 +1,11 @@
-package net.maxxlive.secondarykeys.mixin;
+package de.ermackov.secondarykeys.mixin;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import net.maxxlive.secondarykeys.SecondaryKeyHolder;
-import net.maxxlive.secondarykeys.SecondaryKeys;
+import de.ermackov.secondarykeys.SecondaryKeyHolder;
+import de.ermackov.secondarykeys.SecondaryKeys;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.ToggleKeyMapping;
 import net.minecraft.client.input.KeyEvent;
@@ -27,26 +27,26 @@ public abstract class KeyMappingMixin implements SecondaryKeyHolder {
 	@Shadow protected InputConstants.Key key;
 
 	@Unique
-	private InputConstants.Key secondarykeys$secondary = InputConstants.UNKNOWN;
+	private InputConstants.Key mxsecondarykeys$secondary = InputConstants.UNKNOWN;
 
 	@Override
-	public InputConstants.Key secondarykeys$getSecondaryKey() {
-		return this.secondarykeys$secondary;
+	public InputConstants.Key mxsecondarykeys$getSecondaryKey() {
+		return this.mxsecondarykeys$secondary;
 	}
 
 	@Override
-	public void secondarykeys$setSecondaryKey(InputConstants.Key key) {
-		this.secondarykeys$secondary = key == null ? InputConstants.UNKNOWN : key;
+	public void mxsecondarykeys$setSecondaryKey(InputConstants.Key key) {
+		this.mxsecondarykeys$secondary = key == null ? InputConstants.UNKNOWN : key;
 	}
 
 	@Override
-	public InputConstants.Key secondarykeys$getPrimaryKey() {
+	public InputConstants.Key mxsecondarykeys$getPrimaryKey() {
 		return this.key;
 	}
 
 	/** Register every mapping a second time under its secondary key, so click()/set() reach it. */
 	@Inject(method = "resetMapping", at = @At("TAIL"))
-	private static void secondarykeys$registerSecondaryKeys(CallbackInfo ci) {
+	private static void mxsecondarykeys$registerSecondaryKeys(CallbackInfo ci) {
 		for (KeyMapping mapping : ALL.values()) {
 			InputConstants.Key secondary = SecondaryKeys.getSecondary(mapping);
 			if (!secondary.equals(InputConstants.UNKNOWN)) {
@@ -63,7 +63,7 @@ public abstract class KeyMappingMixin implements SecondaryKeyHolder {
 	 * while its other binding (primary or secondary) is still held.
 	 */
 	@Inject(method = "set", at = @At("HEAD"), cancellable = true)
-	private static void secondarykeys$set(InputConstants.Key key, boolean state, CallbackInfo ci) {
+	private static void mxsecondarykeys$set(InputConstants.Key key, boolean state, CallbackInfo ci) {
 		SecondaryKeys.trackPress(key, state);
 		ci.cancel();
 		List<KeyMapping> mappings = MAP.get(key);
@@ -80,7 +80,7 @@ public abstract class KeyMappingMixin implements SecondaryKeyHolder {
 
 	/** After regaining focus, also mark actions whose secondary keyboard key is held as pressed. */
 	@Inject(method = "setAll", at = @At("TAIL"))
-	private static void secondarykeys$setAllSecondary(CallbackInfo ci) {
+	private static void mxsecondarykeys$setAllSecondary(CallbackInfo ci) {
 		for (KeyMapping mapping : ALL.values()) {
 			InputConstants.Key secondary = SecondaryKeys.getSecondary(mapping);
 			if (secondary.getType() != InputConstants.Type.KEYBOARD || secondary.equals(InputConstants.UNKNOWN)) {
@@ -96,9 +96,9 @@ public abstract class KeyMappingMixin implements SecondaryKeyHolder {
 	}
 
 	@Inject(method = "matches(Lnet/minecraft/client/input/KeyEvent;)Z", at = @At("RETURN"), cancellable = true)
-	private void secondarykeys$matchesKey(KeyEvent event, CallbackInfoReturnable<Boolean> cir) {
+	private void mxsecondarykeys$matchesKey(KeyEvent event, CallbackInfoReturnable<Boolean> cir) {
 		if (!cir.getReturnValueZ()) {
-			InputConstants.Key s = this.secondarykeys$secondary;
+			InputConstants.Key s = this.mxsecondarykeys$secondary;
 			if (s.getType() == InputConstants.Type.KEYBOARD && !s.equals(InputConstants.UNKNOWN) && s.getValue() == event.key()) {
 				cir.setReturnValue(true);
 			}
@@ -106,9 +106,9 @@ public abstract class KeyMappingMixin implements SecondaryKeyHolder {
 	}
 
 	@Inject(method = "matchesMouse", at = @At("RETURN"), cancellable = true)
-	private void secondarykeys$matchesMouse(MouseButtonEvent event, CallbackInfoReturnable<Boolean> cir) {
+	private void mxsecondarykeys$matchesMouse(MouseButtonEvent event, CallbackInfoReturnable<Boolean> cir) {
 		if (!cir.getReturnValueZ()) {
-			InputConstants.Key s = this.secondarykeys$secondary;
+			InputConstants.Key s = this.mxsecondarykeys$secondary;
 			if (s.getType() == InputConstants.Type.MOUSE && s.getValue() == event.button()) {
 				cir.setReturnValue(true);
 			}
@@ -116,8 +116,8 @@ public abstract class KeyMappingMixin implements SecondaryKeyHolder {
 	}
 
 	@Inject(method = "matches(Lcom/mojang/blaze3d/platform/InputConstants$Key;)Z", at = @At("RETURN"), cancellable = true)
-	private void secondarykeys$matchesInputKey(InputConstants.Key key, CallbackInfoReturnable<Boolean> cir) {
-		if (!cir.getReturnValueZ() && !this.secondarykeys$secondary.equals(InputConstants.UNKNOWN) && this.secondarykeys$secondary.equals(key)) {
+	private void mxsecondarykeys$matchesInputKey(InputConstants.Key key, CallbackInfoReturnable<Boolean> cir) {
+		if (!cir.getReturnValueZ() && !this.mxsecondarykeys$secondary.equals(InputConstants.UNKNOWN) && this.mxsecondarykeys$secondary.equals(key)) {
 			cir.setReturnValue(true);
 		}
 	}

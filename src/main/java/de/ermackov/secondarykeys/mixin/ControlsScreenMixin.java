@@ -1,6 +1,6 @@
-package net.maxxlive.secondarykeys.mixin;
+package de.ermackov.secondarykeys.mixin;
 
-import net.maxxlive.secondarykeys.screen.SecondaryKeyBindsScreen;
+import de.ermackov.secondarykeys.screen.SecondaryKeyBindsScreen;
 import net.minecraft.client.Options;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
@@ -28,10 +28,10 @@ public abstract class ControlsScreenMixin extends OptionsSubScreen {
 			ordinal = 0
 		)
 	)
-	private void secondarykeys$addButton(CallbackInfo ci) {
+	private void mxsecondarykeys$addButton(CallbackInfo ci) {
 		if (this.list != null) {
 			this.list.addBig(Button.builder(
-				Component.translatable("secondarykeys.button.open"),
+				Component.translatable("mxsecondarykeys.button.open"),
 				button -> this.minecraft.gui.setScreen(new SecondaryKeyBindsScreen(this, this.options))
 			).build());
 		}

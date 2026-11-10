@@ -1,4 +1,4 @@
-package net.maxxlive.secondarykeys;
+package de.ermackov.secondarykeys;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import java.io.IOException;
@@ -12,15 +12,18 @@ import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 
 /**
- * Persists secondary bindings in {@code config/secondarykeys.txt} as {@code <mapping name>:<key name>} lines.
+ * Persists secondary bindings in {@code config/mxsecondarykeys.txt} as {@code <mapping name>:<key name>} lines.
  */
 public final class SecondaryKeyStore {
-	private static final Path FILE = FabricLoader.getInstance().getConfigDir().resolve("secondarykeys.txt");
+	private static final Path FILE = FabricLoader.getInstance().getConfigDir().resolve("mxsecondarykeys.txt");
+	/** File name used before the mod id got the "mx" prefix. */
+	private static final Path LEGACY_FILE = FabricLoader.getInstance().getConfigDir().resolve("secondarykeys.txt");
 
 	private SecondaryKeyStore() {
 	}
 
 	public static void load() {
+		migrateLegacyFile();
 		if (!Files.exists(FILE)) {
 			return;
 		}
@@ -67,6 +70,23 @@ public final class SecondaryKeyStore {
 			Files.write(FILE, lines, StandardCharsets.UTF_8);
 		} catch (IOException e) {
 			SecondaryKeys.LOGGER.error("Could not write {}", FILE, e);
+		}
+	}
+
+	/**
+	 * Renames the file of versions before the "mx" prefix once, and points the mod's own key mapping to its new name.
+	 */
+	private static void migrateLegacyFile() {
+		if (Files.exists(FILE) || !Files.exists(LEGACY_FILE)) {
+			return;
+		}
+		try {
+			String content = Files.readString(LEGACY_FILE, StandardCharsets.UTF_8).replace("key.secondarykeys.", "key.mxsecondarykeys.");
+			Files.writeString(FILE, content, StandardCharsets.UTF_8);
+			Files.delete(LEGACY_FILE);
+			SecondaryKeys.LOGGER.info("Moved {} to {}", LEGACY_FILE.getFileName(), FILE.getFileName());
+		} catch (IOException e) {
+			SecondaryKeys.LOGGER.error("Could not move {} to {}", LEGACY_FILE, FILE, e);
 		}
 	}
 }

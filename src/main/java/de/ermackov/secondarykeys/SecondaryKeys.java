@@ -1,4 +1,4 @@
-package net.maxxlive.secondarykeys;
+package de.ermackov.secondarykeys;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import java.util.HashSet;
@@ -7,7 +7,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
-import net.maxxlive.secondarykeys.screen.SecondaryKeyBindsScreen;
+import de.ermackov.secondarykeys.screen.SecondaryKeyBindsScreen;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.Identifier;
@@ -15,7 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class SecondaryKeys implements ClientModInitializer {
-	public static final String MOD_ID = "secondarykeys";
+	public static final String MOD_ID = "mxsecondarykeys";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	private static final KeyMapping.Category KEY_CATEGORY = KeyMapping.Category.register(Identifier.fromNamespaceAndPath(MOD_ID, "main"));
@@ -26,7 +26,7 @@ public class SecondaryKeys implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		openScreenKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.secondarykeys.open", InputConstants.KEY_K, KEY_CATEGORY));
+		openScreenKey = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.mxsecondarykeys.open", InputConstants.KEY_K, KEY_CATEGORY));
 
 		// All key mappings (including other mods') exist once the client has started.
 		ClientLifecycleEvents.CLIENT_STARTED.register(client -> SecondaryKeyStore.load());
@@ -41,15 +41,15 @@ public class SecondaryKeys implements ClientModInitializer {
 	}
 
 	public static InputConstants.Key getSecondary(KeyMapping mapping) {
-		return ((SecondaryKeyHolder) mapping).secondarykeys$getSecondaryKey();
+		return ((SecondaryKeyHolder) mapping).mxsecondarykeys$getSecondaryKey();
 	}
 
 	public static void setSecondary(KeyMapping mapping, InputConstants.Key key) {
-		((SecondaryKeyHolder) mapping).secondarykeys$setSecondaryKey(key);
+		((SecondaryKeyHolder) mapping).mxsecondarykeys$setSecondaryKey(key);
 	}
 
 	public static InputConstants.Key getPrimary(KeyMapping mapping) {
-		return ((SecondaryKeyHolder) mapping).secondarykeys$getPrimaryKey();
+		return ((SecondaryKeyHolder) mapping).mxsecondarykeys$getPrimaryKey();
 	}
 
 	public static boolean hasSecondary(KeyMapping mapping) {

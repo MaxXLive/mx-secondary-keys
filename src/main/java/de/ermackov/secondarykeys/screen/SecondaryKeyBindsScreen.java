@@ -1,8 +1,8 @@
-package net.maxxlive.secondarykeys.screen;
+package de.ermackov.secondarykeys.screen;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import net.maxxlive.secondarykeys.SecondaryKeyStore;
-import net.maxxlive.secondarykeys.SecondaryKeys;
+import de.ermackov.secondarykeys.SecondaryKeyStore;
+import de.ermackov.secondarykeys.SecondaryKeys;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Options;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -18,10 +18,10 @@ import org.jspecify.annotations.Nullable;
 
 /**
  * Combined key binds screen: every action shows its primary and its secondary key side by side.
- * Primary keys are stored by vanilla in options.txt, secondary keys in config/secondarykeys.txt.
+ * Primary keys are stored by vanilla in options.txt, secondary keys in config/mxsecondarykeys.txt.
  */
 public class SecondaryKeyBindsScreen extends OptionsSubScreen {
-	private static final Component TITLE = Component.translatable("secondarykeys.screen.title");
+	private static final Component TITLE = Component.translatable("mxsecondarykeys.screen.title");
 	public @Nullable KeyMapping selectedKey;
 	public boolean selectingSecondary;
 	private SecondaryKeyBindsList keyList;

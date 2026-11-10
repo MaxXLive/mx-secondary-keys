@@ -1,10 +1,10 @@
-package net.maxxlive.secondarykeys.screen;
+package de.ermackov.secondarykeys.screen;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.platform.InputConstants;
 import java.util.Arrays;
 import java.util.List;
-import net.maxxlive.secondarykeys.SecondaryKeys;
+import de.ermackov.secondarykeys.SecondaryKeys;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -76,8 +76,8 @@ public class SecondaryKeyBindsList extends ContainerObjectSelectionList<Secondar
 
 	/** "Primary" / "Secondary" labels above the two key columns. */
 	public class ColumnHeaderEntry extends Entry {
-		private final Component primary = Component.translatable("secondarykeys.column.primary").withStyle(ChatFormatting.GRAY);
-		private final Component secondary = Component.translatable("secondarykeys.column.secondary").withStyle(ChatFormatting.GRAY);
+		private final Component primary = Component.translatable("mxsecondarykeys.column.primary").withStyle(ChatFormatting.GRAY);
+		private final Component secondary = Component.translatable("mxsecondarykeys.column.secondary").withStyle(ChatFormatting.GRAY);
 
 		@Override
 		public void extractContent(GuiGraphicsExtractor graphics, int mouseX, int mouseY, boolean hovered, float a) {

@@ -23,7 +23,7 @@ The second key does not replace the primary one. Both keys trigger the action, a
 - Press **Esc** while assigning to remove a binding.
 - **Reset** sets the primary key back to its default and clears the secondary key. **Reset Keys** does this for every action.
 
-Secondary bindings are saved in `config/secondarykeys.txt` as `<action>:<key>` lines, for example `key.jump:key.mouse.4`.
+Secondary bindings are saved in `config/mxsecondarykeys.txt` as `<action>:<key>` lines, for example `key.jump:key.mouse.4`.
 
 ## Requirements
 

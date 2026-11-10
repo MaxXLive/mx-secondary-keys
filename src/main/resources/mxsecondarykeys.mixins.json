@@ -1,7 +1,7 @@
 {
 	"required": true,
 	"minVersion": "0.8",
-	"package": "net.maxxlive.secondarykeys.mixin",
+	"package": "de.ermackov.secondarykeys.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"client": [
 		"ControlsScreenMixin",

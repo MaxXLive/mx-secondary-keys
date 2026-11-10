@@ -1,23 +1,27 @@
 {
 	"schemaVersion": 1,
-	"id": "secondarykeys",
+	"id": "mxsecondarykeys",
 	"version": "${version}",
 	"name": "MX Secondary Keys",
 	"description": "Adds a second, independent key binding to every action (vanilla and modded) without touching the primary one. Configure it via Options > Controls > Secondary Keybinds or by pressing K.",
 	"authors": [
 		"maxxlive"
 	],
+	"contact": {
+		"sources": "https://github.com/MaxXLive/mx-secondary-keys",
+		"issues": "https://github.com/MaxXLive/mx-secondary-keys/issues"
+	},
 	"license": "MIT",
 	"environment": "client",
 	"entrypoints": {
 		"client": [
-			"net.maxxlive.secondarykeys.SecondaryKeys"
+			"de.ermackov.secondarykeys.SecondaryKeys"
 		]
 	},
 	"mixins": [
-		"secondarykeys.mixins.json"
+		"mxsecondarykeys.mixins.json"
 	],
-	"accessWidener": "secondarykeys.classtweaker",
+	"accessWidener": "mxsecondarykeys.classtweaker",
 	"depends": {
 		"fabricloader": ">=0.19.0",
 		"fabric-api": "*",
