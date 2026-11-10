@@ -1,6 +1,15 @@
-# MX Secondary Keys
+<p align="center">
+  <img src="src/main/resources/assets/mxsecondarykeys/icon.png" alt="MX Secondary Keys icon" width="128">
+</p>
 
-A client-side Fabric mod for **Minecraft 26.3** that gives every key binding a second, independent key. This works for vanilla actions and for actions added by other mods.
+<h1 align="center">MX Secondary Keys</h1>
+
+<p align="center">
+  A client-side Fabric mod for Minecraft 26.3 that gives every key binding a second, independent key.<br>
+  Works for vanilla actions and for actions added by other mods.
+</p>
+
+---
 
 The second key does not replace the primary one. Both keys trigger the action, and you can bind keyboard keys and mouse buttons to either slot.
 

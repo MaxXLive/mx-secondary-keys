@@ -12,6 +12,7 @@
 		"issues": "https://github.com/MaxXLive/mx-secondary-keys/issues"
 	},
 	"license": "MIT",
+	"icon": "assets/mxsecondarykeys/icon.png",
 	"environment": "client",
 	"entrypoints": {
 		"client": [
