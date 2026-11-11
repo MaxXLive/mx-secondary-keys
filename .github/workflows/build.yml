@@ -55,7 +55,7 @@ jobs:
       - uses: actions/upload-artifact@v7
         with:
           name: MXSecondaryKeys
-          path: build/libs/MXSecondaryKeys-*.jar
+          path: build/libs/MXSecondaryKeys-fabric-*.jar
           if-no-files-found: error
 
       - name: Create release
@@ -67,7 +67,7 @@ jobs:
         run: |
           cat "$RUNNER_TEMP/CHANGELOG.md"
           gh release create "$TAG" \
-            build/libs/MXSecondaryKeys-"$VERSION".jar \
+            build/libs/MXSecondaryKeys-fabric-"$VERSION".jar \
             --target "$GITHUB_SHA" \
             --title "MX Secondary Keys $VERSION" \
             --notes-file "$RUNNER_TEMP/CHANGELOG.md"
@@ -77,7 +77,7 @@ jobs:
         env:
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
           CURSEFORGE_PROJECT: "1796516"
-          FILE: build/libs/MXSecondaryKeys-${{ steps.info.outputs.version }}.jar
+          FILE: build/libs/MXSecondaryKeys-fabric-${{ steps.info.outputs.version }}.jar
           DISPLAY_NAME: MX Secondary Keys ${{ steps.info.outputs.version }}
           CHANGELOG_FILE: ${{ runner.temp }}/CHANGELOG.md
           MC_VERSION: ${{ steps.info.outputs.mc }}
